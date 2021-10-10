@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailroutablepage_tags wagtailcore_tags %}
+
+{% block content %}
+
+<style>
+.card-icon {
+  color: transparent;
+}
+
+.card-icon:hover {
+  color: PaleVioletRed;
+}
+
+.card-title {
+  color: white;
+  text-shadow:
+   -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+}
+
+</style>
+
+<div class="container">
+    <h1 class="text-center mb-sm-5">{{ self.title }}</h1>
+
+    <div class="row justify-content-center">
+        <div class="card-columns center">
+        {% for painter in painter_list %}
+            {% image painter.painter_image fill-300x300 as img %}
+
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ img.url }}" alt="{{ img.alt }}" class="painter-img-fluid w-100 rounded"/>
+
+                    <div class="card-img-overlay text-center">
+                        <div class="card-title">{{ painter.title }}</div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <a href="{% pageurl painter %}">
+                                <i class='card-icon text-centered fas fa-expand fa-3x'></i>
+                                </a>
+
+
+                    </div>
+
+</div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
