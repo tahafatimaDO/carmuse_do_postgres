@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% load wagtailimages_tags wagtailroutablepage_tags wagtailcore_tags %}
+
+
+{% block content %}
+
+<div class="container">
+    <!--       <div class="container mb-sm-5 mt-sm-5">-->
+    <div class="text-center mb-sm-5">
+    <h1>{{ self.title }}</h1>
+    <h6>{{ page.subtitle|richtext }}</h6>
+        </div>
+
+
+    <div class="col-12">
+
+        <div class="card-deck">
+            {% for e in expos %}
+            {% image e.main_image width-350 as img %}
+
+            <div class="card-container" data-toggle="modal" data-target="#portfolioModal1{{ e.id }}">
+
+                <div class="card">
+                    <img src="{{ img.url }}" alt="{{ img.alt }}" class="t-img-top"/>
+                    <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                        <h4 class="title">{{e.title}}</h4>
+                        <p class="text">{{e.subtitle|richtext}}</p>
+
+                        <div class="icon text-center">
+                            <a href="{% pageurl e e.id %}" class="btn btn-primary mt-4">Read More</a>
+                            <a href="{% pageurl e e.id %}"><i class="fa fa-search fa-3x"></i></a>
+<!--                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#largeModal{{ t.id }}">-->
+<!--                                Launch demo modal-->
+<!--                            </button>-->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Modal -->
+  <div class="modal fade" id="largeModal{{ e.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal-content">
+        <div class="modal-body">
+<!--here I should enter a page modal-->
+
+            <a href="{% pageurl e %}"></a>
+</div>
+    </div>
+      </div>
+
+            {% endfor %}
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+{# Only show pagination if there is more than one page to click through #}
+{% if expos.paginator.num_pages > 1 %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="pagination">
+                {% if expos.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ expos.previous_page_number }}" class="page-link">
+                        <span>&laquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% for page_num in expos.paginator.page_range %}
+                <li class="page-item {% if page_num == expos.number %} active{% endif %}">
+                    <a href="?page={{ page_num }}" class="page-link">
+                        {{ page_num }}
+                    </a>
+                </li>
+                {% endfor %}
+
+                {% if expos.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ expos.next_page_number }}" class="page-link">
+                        <span>&raquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+</div>
+
+{% endblock %}

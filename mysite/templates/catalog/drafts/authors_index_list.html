@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static%}
+{% block body_class %}template-homepage{% endblock %}
+{% block content %}
+
+<!-- Render Top/Intro Block -->
+<div class="container-fluid container-dark py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                <h1 class="text-center display-4 mt-2 mb-4 text-warning">{{ page.title }}</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                <div class="intro text-muted h4">{{ page.intro|richtext }}</div>
+            </div>
+        </div>
+    </div>
+<!-- End Intro block, start iterating through book blocks -->
+    {% for author in author_list %}
+    <div class="container card bg-primary mt-4 mb-5 p-3">
+        <div class="row justify-content-center">
+            <!-- Left hand column -->
+            <div class="col-12 col-md-8 align-items-center text-center order-2 order-md-1">
+                <h2 class="card-title text-white text-center my-2">
+                    <a href="{% pageurl author %}" class="orange-link">{{ author.author.pen_name }}</a>
+                </h2>
+                <p class="card-body card-text text-white my-2">
+                    {% if author.teaser %}
+                    {{ author.teaser|richtext }}
+                    {% else %}
+                    {{ author.bio |richtext|truncatewords:100}}
+                    {% endif %}
+                </p>
+                <div class="row justify-content-center mt-4 mb-2">
+                    <a class="btn btn-outline-warning p-2 newsletter-font text-uppercase"
+                    href="{% pageurl author %}" role="button">Find out more</a>
+                </div>
+            </div>
+            <!-- Right hand column -->
+            <div class="col align-items-center text-center order-1 order-md-2">
+                {% image author.author_photo min-2000x400 as cover_image %}
+                <a href="{% pageurl author%}">
+                    <img src="{{ cover_image.url }}" class="mw-100" style="max-height: 50vh">
+                </a>
+            </div>
+        <!-- Close Row -->
+        </div>
+    <!-- Close Card -->
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

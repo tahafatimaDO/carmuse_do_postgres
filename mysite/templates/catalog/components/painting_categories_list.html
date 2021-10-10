@@ -1,0 +1,11 @@
+{% load wagtailroutablepage_tags %}
+
+{% if categories %}
+    <i class="fas fa-tag"></i>
+    {% for paintingpage_category in categories %}
+  <a href="{% routablepageurl painting_index_page 'post_by_category' category.slug %}">
+        {{ paintingpage_category.painting_category.name }}
+      </a>
+    {% endfor %}
+    &nbsp;
+{% endif %}

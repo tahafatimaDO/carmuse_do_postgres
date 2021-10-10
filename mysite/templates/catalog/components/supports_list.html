@@ -1,0 +1,22 @@
+{% load wagtailroutablepage_tags wagtailcore_tags %}
+
+<div class="card my-4">
+  <h5 class="card-header">Support</h5>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="list-unstyled mb-0">
+          {% for support in supports %}
+            <li>
+              <a href="{% routablepageurl painting_index_page 'post_by_support' support.slug %}">
+                class= "link-primary text-decoration-none">{{ support.name }}
+              </a>
+            </li>
+          {% empty %}
+            'No supports yet'
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

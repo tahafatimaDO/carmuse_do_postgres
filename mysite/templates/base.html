@@ -1,0 +1,108 @@
+{% load static wagtailcore_tags wagtailuserbar %}
+{% load menus_tags %}
+{% get_menu 'main' as navigation %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+                {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% wagtail_site as current_site %}
+                {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {# Global stylesheets #}
+         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/sketchy/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/emuseum.css' %}">
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+        {% wagtailuserbar %}
+
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">CarMuse</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+
+                        {% for item in navigation.menu_items.all %}
+                            <li>
+                                <a href="{{ item.link }}" class="nav-link"{% if item.open_in_new_tab %} target="_blank"{% endif %}>{{ item.title }}</a>
+                            </li>
+                        {% endfor %}
+
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+
+                    </li>
+                </ul>
+
+<form action="{% url 'search' %}" method="get">
+        <input type="text" name="query" value="{{ search_query }}">
+        <input type="submit" value="Search">
+    </form>
+<!--                <form class="form-inline my-2 my-lg-0">-->
+<!--                <input class="form-control mr-sm-2" type="text" placeholder="Search">-->
+<!--                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>-->
+<!--              </form>-->
+
+                {% if search_results %}
+        <ul>
+            {% for result in search_results %}
+                <li>
+                    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
+                    {% if result.search_description %}
+                        {{ result.search_description|safe }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif search_query %}
+        No results found
+    {% else %}
+        Please type something into the search box
+    {% endif %}
+
+
+            </div>
+          </nav>
+
+
+        {% include "menus/main_menu.html" %}
+        {#% include "menus/footer.html" %#}
+
+
+        {% block content %}{% endblock %}
+
+        {# Global javascript #}
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script>function goBack() {window.history.back();}</script>
+        <script type="text/javascript" src="{% static 'js/emuseum.js' %}"></script>
+
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+        {% endblock %}
+    </body>
+</html>

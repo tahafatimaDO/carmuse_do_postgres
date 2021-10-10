@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% load wagtailimages_tags wagtailroutablepage_tags wagtailcore_tags %}
+
+
+{% block content %}
+
+
+
+
+
+<div class="container">
+    <section class="page-section portfolio" id="portfolio">
+    <p>
+    <h1 class="title mb-0">{{ page.title }}</h1>
+    <p><h6 class="title mb-5">{{ page.subtitle }}</h6></P>
+
+
+    <div class="container">
+        <div class="row">
+            {% for expo in expos %}
+            <div class="col mb-4">
+                <div class="card-expo img-fluid" style="width:500px">
+                    {% image expo.main_image fill-250x250 as expo_img %}
+                    <a href="{{ expo_img.url }}">
+                        <img src="{{ expo_img.url }}" alt="{{ expo_img.alt }}">
+                    </a>
+                    <img class="card-img-top" src="{{expo.photo.url}}" alt="Card image" style="width:100%">
+                    <div class="card-img-overlay-expo text-white d-flex flex-column justify-content-center">
+                        <div class="content-expo">
+                        <h4 class="card-title-expo">{{expo.title}}</h4>
+                        <p class="card-text-expo">{{expo.description}}</p>
+                        <div class="icon-expo text-center">
+                            <a href="#"><i class="fa fa-search fa-3x"></i></a>
+                        </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+<!--    {% for expo in expos %}-->
+<!--            <div class="row mt-5 mb-5">-->
+<!--                <div class="col-sm-3">-->
+<!--                    {% image expo.main_image fill-250x250 as expo_img %}-->
+<!--                    <a href="{{ expo.url }}">-->
+<!--                        <img src="{{ expo_img.url }}" alt="{{ expo_img.alt }}">-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="col-sm-9">-->
+<!--                    <a href="{{ expo.url }}">-->
+<!--                        <h2>{{ expo.title }}</h2>-->
+<!--                        <a href="{{ expo.url }}" class="btn btn-primary mt-4">{{expo.button_text}}</a>-->
+<!--                    </a>-->
+<!--                </div>-->
+
+<!--               {# carousel modal #}-->
+<!--                <div class="container">-->
+<!--  <h1 class="display-4 text-center mb-4">Sample Modal</h1>-->
+
+<!--  <div class="row mb-4">-->
+<!--    <div class="col text-center">-->
+<!--      <a href="#" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#largeModal{{ expo.specific }}">Click to open Modal</a>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash; modal &ndash;&gt;-->
+<!--  <div class="modal fade" id="largeModal{{ expo.specific }}" tabindex="-1" role="dialog" aria-labelledby="basicModal{{ expo.id }}" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-lg">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-body">-->
+<!--           &lt;!&ndash; carousel &ndash;&gt;-->
+<!--              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">-->
+
+<!--            <div class='carousel-inner'>-->
+<!--              {% for loop_cycle in self.gallery_images.all %}-->
+<!--                {% image loop_cycle.image fill-900x400 as img %}-->
+<!--                <div class="carousel-item{% if forloop.counter == 1 %} active{% endif %}">-->
+<!--                    <img src="{{ img.url }}" class="d-block w-100" alt="{{ img.alt }}">-->
+<!--                    <p>{{ loop_cycle.caption }}</p>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--            </div>-->
+<!--            <a-->
+<!--               class='carousel-control-prev'-->
+<!--               href='#carouselExampleIndicators'-->
+<!--               role='button'-->
+<!--               data-slide='prev'-->
+<!--               >-->
+<!--              <span class='carousel-control-prev-icon'-->
+<!--                    aria-hidden='true'-->
+<!--                    ></span>-->
+<!--              <span class='sr-only'>Previous</span>-->
+<!--            </a>-->
+<!--            <a-->
+<!--               class='carousel-control-next'-->
+<!--               href='#carouselExampleIndicators'-->
+<!--               role='button'-->
+<!--               data-slide='next'-->
+<!--               >-->
+<!--              <span-->
+<!--                    class='carousel-control-next-icon'-->
+<!--                    aria-hidden='true'-->
+<!--                    ></span>-->
+<!--              <span class='sr-only'>Next</span>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--            </div>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+
+{# Only show pagination if there is more than one page to click through #}
+{% if expos.paginator.num_pages > 1 %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="pagination">
+                {% if expos.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ expos.previous_page_number }}" class="page-link">
+                        <span>&laquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% for page_num in expos.paginator.page_range %}
+                <li class="page-item {% if page_num == expos.number %} active{% endif %}">
+                    <a href="?page={{ page_num }}" class="page-link">
+                        {{ page_num }}
+                    </a>
+                </li>
+                {% endfor %}
+
+                {% if expos.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ expos.next_page_number }}" class="page-link">
+                        <span>&raquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+</div>
+{% endblock %}

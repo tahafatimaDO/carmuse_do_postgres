@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailroutablepage_tags %}
+
+{% block content %}
+
+    <div class="container">
+       <div class="container mb-sm-5 mt-sm-5">
+    <h1 class="text-center mb-sm-5">{{ self.title }}</h1>
+    <div class="card-deck">
+        {% for painting in paintings %}
+            {% image painting.image fill-300x200 as img %}
+            <div class="card">
+                <img src="{{ img.url }}" alt="{{ img.alt }}" class="painting-img-top" />
+                <div class="painting-body">
+                    <h5 class="card-title">{{ painting.title }}</h5>
+                    <p class="card-text">{{ card.text }}</p>
+                    {% if painting.button_page %}
+                        <a href="{{ painting.button_page.url }}" class="btn btn-primary">
+                            Detailed View
+                        </a>
+                    {% elif painting.button_url %}
+                        <a href="{{ painting.button_url }}" class="btn btn-primary">
+                            Learn More
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+    </div>
+    {# Only show pagination if there is more than one page to click through #}
+    {% if paintings.paginator.num_pages > 1 %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pagination">
+                        {% if paintings.has_previous %}
+                            <li class="page-item">
+                                <a href="?page={{ paintings.previous_page_number }}" class="page-link">
+                                    <span>&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% for page_num in paintings.paginator.page_range %}
+                            <li class="page-item {% if page_num == paintings.number %} active{% endif %}">
+                                <a href="?page={{ page_num }}" class="page-link">
+                                    {{ page_num }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        {% if paintings.has_next %}
+                            <li class="page-item">
+                                <a href="?page={{ paintings.next_page_number }}" class="page-link">
+                                    <span>&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+<body>
+
+{% block extra_css %}
+<style>
+
+
+.card img{
+    height: 100vh;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+}
+
+body{
+    background: #f1e3d3;
+}
+
+.card{
+  color: #202020 ;
+  background-color: #202020  !important;
+}
+
+
+.overlay {
+  position: absolute;
+  top: 80%;
+  left: 0%;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  width: 2vw;
+  height: 2vw;
+}
+
+
+
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% image page.painter_image original as img %}
+<div class="card">
+
+    <img src="{{ img.url }}" alt="{{ img.alt }}" class="painting-img-top"/>
+
+    <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+
+
+        {% for block in page.names %}
+        {% if block.block_type == 'image' %}
+        {% image block.value width-900 class="img-responsive" %}
+
+        {% endif %}
+        {% endfor %}
+
+        {% for block in page.artist_names %}
+        <div class="block-{{ block.block_type }}">
+            <h3>{{ block.value.first_name}}&nbsp;{{ block.value.last_name}}</h3>
+        </div>
+        {% endfor %}
+        {% for block in page.artist_dates %}
+        <div class="block-{{ block.block_type }}">
+            <h6>{{ block.value.date_of_birth }}&nbsp;-&nbsp;{{ block.value.date_of_death }}</h6>
+        </div>
+        {% endfor %}
+        <p class="card-subtitle text-center">{{ self.pitch|richtext|truncatewords:15 }}</p>
+        <div>
+            <h6>Bio:</h6>
+            <p class="card-subtitle text-center">{{ self.bio|richtext }}</p>
+        </div>
+
+        {% for block in page.artist_links %}
+        {% if block.block_type == 'artist_links' %}
+        <h6>Links:</h6>
+        {% endif %}
+        <div class="block-{{ block.block_type }}">
+            {% include_block block.value %}
+        </div>
+        {% endfor %}
+
+
+<!--        <div class="d-flex justify-content-center">-->
+<!--            {% for iter in self.painter_links.all %}-->
+<!--            <div>-->
+<!--                {% if iter.link.link_name %}-->
+<!--                <a href="{{ iter.link.link_name }}">-->
+<!--                    {{ iter.link.link.url }}-->
+<!--                </a>-->
+<!--                {% else %}-->
+<!--                {##}-->
+<!--                {% endif %}-->
+<!--            </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+
+
+
+<!--    </div>-->
+
+
+</div>
+</div>
+</body>
+
+
+{% endblock %}

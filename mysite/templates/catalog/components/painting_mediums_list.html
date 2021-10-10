@@ -1,0 +1,11 @@
+{% load wagtailroutablepage_tags %}
+
+{% if mediums %}
+    <i class="fas fa-tag"></i>
+    {% for paintingpage_location in mediums %}
+  <a href="{% routablepageurl painting_index_page 'post_by_medium' medium.slug %}">
+        {{ paintingpage_medium.painting_medium.name }}
+      </a>
+    {% endfor %}
+    &nbsp;
+{% endif %}

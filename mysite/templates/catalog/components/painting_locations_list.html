@@ -1,0 +1,11 @@
+{% load wagtailroutablepage_tags %}
+
+{% if locations %}
+    <i class="fas fa-tag"></i>
+    {% for paintingpage_location in locations %}
+  <a href="{% routablepageurl painting_index_page 'post_by_location' location.slug %}">
+        {{ paintingpage_location.painting_location.name }}
+      </a>
+    {% endfor %}
+    &nbsp;
+{% endif %}

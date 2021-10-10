@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static%}
+{#% load wagtailroutablepage_tags %#}
+{% block body_class %}template-homepage{% endblock %}
+{% block content %}
+<!-- Render Top/Intro Block -->
+<div class="container-fluid container-dark py-5">
+    <div class="container card bg-primary mt-4 mb-5 p-3">
+        <div class="row justify-content-center">
+            <!-- Left hand column -->
+            <div class="col-12 col-md-6 align-items-center text-center text-white order-2 order-md-1">
+                <h2 class="card-title text-warning text-center my-2">{{ page.title }}</h2>
+                {% for block in page.body %}
+                <p class="card-body card-text text-white my-2">
+                    {% if block.block_type == 'description' %}
+                    {{ block.value.description|richtext }}
+                </p>
+                <p>
+                    {% elif block.block_type == "painter" %}
+                    {{ block.value.painter }}
+                </p>
+                <p>
+                    {% elif block.block_type == "medium" %}
+                    {{ block.value.medium }}
+                    {% endif %}
+                </p>
+                <div class="meta content">
+                    <h6>Location: </h6>
+                    <slug>{{ painting_page_location }}</slug>
+                    <h6>Dimensions:</h6>
+                    <slug>dimenions details</slug>
+                    <h6>Technique: </h6>
+                    <slug>{{ painting_page_support}} sur {{ painting_page_support }}</slug>
+                </div>
+                {% endfor %}
+
+
+                {% if self.categories.count %}
+                <div style="padding: 0 20px 20px">
+                    {% for cat in self.categories.all %}
+                    <a href="?category={{ cat.slug }}">
+                        {{ cat.name }}
+                    </a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if self.locations.count %}
+    <div style="padding: 0 20px 20px">
+        {% for loc in self.locations.all %}
+        <a href="?location={{ loc.slug }}">
+            {{ loc.name }}
+        </a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+                {% if self.tests.count %}
+    <div style="padding: 0 20px 20px">
+        {% for tes in self.tests.all %}
+        <a href="?tests={{ tes.slug }}">
+            {{ tes.name }}
+        </a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    <h2>Categories</h2>
+    <ul>
+        {% for cat in self.categories.all %}
+        <li>
+            <a href="{{ self.get_parent.url }}?category={{ cat.slug }}">
+                {{ cat.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Tests</h2>
+    <ul>
+        {% for tes in self.tests.all %}
+        <li>
+            <a href="{{ self.get_parent.url }}?test={{ tes.slug }}">
+                {{ tes.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Locations</h2>
+<ul>
+    {% for loc in self.location.all %}
+    <li>
+        <a href="{{ self.get_parent.url }}?location={{ loc.slug }}">
+            {{ loc.name }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+
+</div>
+</div>
+</div>
+
+
+
+
+{# Check if there are tags #}
+{% if page.tags.count %}
+<h6>Tags:</h6>
+{% for tag in page.tags.all %}
+{# Loop through all the existing tags #}
+<a href="{{ self.get_parent.url }}?tag={{ tag.slug }}">{{ tag }}</a><br/>
+{% endfor %}
+{% endif %}
+
+
+<p><a href="{{ painting_page.get_parent.url }}">Return to Catalog</a></p>
+</div>
+<!-- Right hand column -->
+<div class="col align-items-center text-center order-1 order-md-2">
+    {% image page.image min-2000x400 as painting_img %}
+    <img src="{{ painting_img.url }}" class="mw-100" style="max-height: 50vh">
+</div>
+<!-- Close Row -->
+</div>
+<!-- Close Card -->
+</div>
+</div>
+{% endblock %}
+
+

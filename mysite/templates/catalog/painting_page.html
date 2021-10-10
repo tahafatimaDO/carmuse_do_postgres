@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+<body>
+
+{% block extra_css %}
+<style>
+
+
+.card img{
+    height: 100vh;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+}
+
+body{
+    background: #f1e3d3;
+}
+
+.card{
+  color: #202020 ;
+  background-color: #202020  !important;
+}
+
+
+.overlay {
+  position: absolute;
+  top: 80%;
+  left: 0%;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  width: 2vw;
+  height: 2vw;
+}
+
+.painting-subtitle {
+    text-decoration: underline red;
+}
+
+
+
+
+
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% image page.image original as img %}
+<div class="card">
+
+    <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-top"/>
+
+    <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+
+        <div class="card-header">
+            <h3>{{ self.title }}</h3>
+
+            <h6 class="painting-subtitle">{{ self.painter }}</h6>
+        </div>
+
+
+        <div class="card-body">
+            <div class="technical">
+                {% for block in page.technical_details %}
+                <div class="block-{{ block.block_type }}">
+                    {% include_block block %}
+                </div>
+                {% endfor %}
+
+                {{ block_type.support }}
+
+                <!--           Categories-->
+
+                {% for cat in self.categories.all %}
+
+                <a href="{{ self.get_parent.url }}?category={{ cat.slug }}">
+                    {{ cat.name }}
+                </a>
+
+                {% endfor %}
+
+                <!--           Location-->
+
+                {% for loc in self.locations.all %}
+
+                <a href="{{ self.get_parent.url }}?location={{ loc.slug }}">
+                    {{ loc.name }}
+                </a>
+
+                {% endfor %}
+
+                {% for med in self.medium.all %}
+                {% for sup in self.support.all %}
+                <a href="{{ self.get_parent.url }}?medium={{ med.slug }}">
+                    {{ med.name }}
+                    <href
+                    ="{{ self.get_parent.url }}?support={{ sup.slug }}">on
+                    {{ sup.name }}</herf>
+                </a>
+                {% endfor %}
+                {% endfor %}
+
+            </div>
+            {% for block in page.description %}
+
+            <div class="mt-30">
+                <div class="block-{{ block.block_type }}">
+                    <h6>{{ block.block_type }}:</h6>
+                    {{ block.value }}
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <div class="card-footer">
+        {# Check if there are tags #}
+        {% if page.tags.count %}
+        {% for tag in page.tags.all %}
+        {# Loop through all the existing tags #}
+        <a href="{{ self.get_parent.url }}?tag={{ tag.slug }}">{{ tag }}</a><br/>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
+</div>
+</div>
+
+</body>
+
+
+{% endblock %}

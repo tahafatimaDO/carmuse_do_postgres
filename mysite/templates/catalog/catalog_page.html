@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailroutablepage_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<div class="container">
+    <!--       <div class="container mb-sm-5 mt-sm-5">-->
+    <h1 class="text-center mb-sm-5">{{ self.title }}</h1>
+
+
+    <div class="col-12">
+
+        <div class="card-columns">
+            {% for painting in posts %}
+            {% image painting.image width-350 as img %}
+
+            <div class="card-container" data-toggle="modal" data-target="#portfolioModal1{{ painting.id }}">
+
+
+                <div class="card">
+                    <img src="{{ img.url }}" alt="{{ img.alt }}" class="painting-img-top"/>
+                    <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                        <h5>{{ painting.title }}</h5>
+                        <div class="icon-expo text-center">
+                            <!--                        <a href="{% pageurl painting %}"><i class="fa fa-search fa-3x"></i></a>-->
+                            <a href="{% pageurl painting painting.id %}" class="btn btn-primary mt-4">Read More</a>
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModalLong{{ painting.id }}">
+                                Launch demo modal
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalLong{{ painting.id }}" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+
+            <div class="container-fluid container-dark py-5">
+                <div class="container card bg-primary mt-4 mb-5 p-3">
+                    <div class="row justify-content-center">
+                        <!-- Left hand column -->
+                        <div class="col-12 col-md-6 align-items-center text-center text-white order-2 order-md-1">
+                            <h2 class="card-title text-warning text-center my-2">{{ painting.title }}</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {#% for block in blocks %#}
+                            <p class="card-body card-text text-white my-2">
+                                {% if painting.description %}
+                                <span>Description:{{ painting.description }}</span>
+                            </p>
+                            {% endif %}
+                            <p>
+                                {% if painting.painter %}
+
+                                <span>Painter: {{ painting.painter }}</span>
+                            </p>
+                            {% endif %}
+                            <p>
+                                {% if painting.medium %}
+                                <span>Technique:{{ painting.medium}}sur{{ painting.support }}</span>
+                            </p>
+                            {% endif %}
+                            <p>
+                                {% if block.block_type == "medium" %}
+                                {{ painting.value.medium }}
+                                {% endif %}
+                            </p>
+                            <div class="meta content">
+                                <h6>Location: </h6>
+                                <h2>{{ block.value.first_name }} {{ block.value.last_name }}</h2>
+                                <slug>{{ painting_page_location }}</slug>
+                                <h6>Dimensions:</h6>
+                                <slug>{{ painting.width }}x{{ painting.height }}</slug>
+                                <h6>Technique: </h6>
+                                <slug>{{ painting_page_support}} sur {{ painting_page_support }}</slug>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                            {#% endfor %#}
+                            <div class="tags">
+                                <h6>Tags</h6>
+                                {% for tag in page.tags.all %}
+                                <button type="button">{{ tag }}</button>
+                                {% endfor %}
+                            </div>
+                            <h6>Categories</h6>
+                            <ul>
+                                {% for painting_page_category in page.categories.all %}
+                                <li>
+                                    {{ painting_page_category.painting_category.name }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+
+                            <p><a href="{{ painting_page.get_parent.url }}">Return to Catalog</a></p>
+                        </div>
+                        <!-- Right hand column -->
+                        <div class="col align-items-center text-center order-1 order-md-2">
+                            {% image painting.image min-2000x400 as painting_img %}
+                            <img src="{{ painting_img.url }}" class="mw-100" style="max-height: 50vh">
+                        </div>
+                        <!-- Close Row -->
+                    </div>
+                    <!-- Close Card -->
+                </div>
+            </div>
+
+
+        </div>
+
+
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}

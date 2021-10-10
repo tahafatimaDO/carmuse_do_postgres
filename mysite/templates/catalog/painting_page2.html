@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% load wagtailimages_tags wagtailcore_tags %}
+
+{% block extra_css %}
+
+<style>
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.img-responsive {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+}
+
+.img-background {
+    position: absolute;
+    background-color: navy;
+    opacity: 0;
+    transition: opacity 300ms;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+body {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.img-default {
+    position: relative;
+    max-width: 100%;
+    background-color: grey;
+}
+.img-background {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    left: 0;
+    background-color: navy;
+    opacity: 0;
+    transition: opacity 300ms;
+}
+
+.imagebox img {
+  opacity: 1;
+  transition: 0.5s opacity;
+  object-fit: contain;
+  width: 100%;
+}
+img-custum {
+  max-width: 500px;
+  max-height: 500px;
+  object-fit: contain;
+  scale: 50%;
+}
+
+</style>
+{% endblock %}
+
+
+
+{% block content %}
+<body class="masthead">
+<div class="container d-flex align-items-center flex-column">
+
+   {% image self.image height-700 as img%}
+<img class="masthead-avatar" src="{{ img.url }}" alt="{{ img.alt }}">
+<div class="card-img-overlay">
+                                <h5 class="card-title text-center">{{ page.title }}</h5>
+                                <p class="card-subtitle text-center">{{ page.description|richtext|truncatewords:15 }}</p>
+
+{% for block in blocks %}
+        <div class="block-{{ block.block_type }}">
+            {% include_block block.value %}
+        </div>
+        {% endfor %}
+
+
+</div>
+            </div>
+
+</body>
+
+
+{% endblock %}
+

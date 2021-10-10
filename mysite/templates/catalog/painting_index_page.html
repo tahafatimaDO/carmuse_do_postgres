@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailroutablepage_tags catalogapp_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<style>
+
+.card-title {
+  color: white;
+  text-shadow:
+   -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+}
+
+.card-icon {
+  color: transparent;
+}
+
+.card-icon:hover {
+  color: PaleVioletRed;
+}
+
+
+
+</style>
+<div class="container">
+    <!--       <div class="container mb-sm-5 mt-sm-5">-->
+    <h1 class="text-center mb-sm-5">{{ self.title }}</h1>
+
+           <div class="container">
+                  <div class="row">
+                      <div class="col-md-3 ms-md-auto">
+
+                      </div>
+                      {#% categories_list %#}
+                      {% include 'catalog/components/sidebar.html' %}
+                  </div>
+                </div>
+
+
+    <div class="col-12">
+
+        <div class="card-columns">
+            {% for painting in posts %}
+            {% image painting.image width-350 as img %}
+
+
+                <div class="card">
+                    <img src="{{ img.url }}" alt="{{ img.alt }}" class="painting-img-top rounded w-100"/>
+                    <div class="card-img-overlay text-white d-flex flex-column justify-content-center text-center">
+                        <h5>{{ painting.title }}</h5>
+                        <div class="icon-expo text-center">
+                            <a href="{% pageurl painting %}" class="btn btn-primary mt-4">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% load i18n wagtailcore_tags wagtailimages_tags widget_tweaks static %}
+
+      {% block extra_css %}
+<style>
+    .img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+/* for the images and text inside streamfields */
+.block-image-center {
+    display: grid;
+    /* justify-content works here because Wagtail creates an image of fixed dimensions */
+    justify-content: center;
+    overflow: hidden;
+    font: italic 12px Georgia, serif;
+}
+
+.article, .theme {
+    width: 320px;
+    height: 240px;
+}
+.img-front {
+    position: relative;
+    max-width: 100%;
+}
+.img-default {
+    position: relative;
+    max-width: 100%;
+    background-color: grey;
+}
+.img-background {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    left: 0;
+    background-color: navy;
+    opacity: 0;
+    transition: opacity 300ms;
+}
+a:hover .img-background {
+    opacity: 0.6;
+}
+
+</style>
+        {% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function(){
+
+            $("#id_login_first_link").click(function(event) {
+                event.preventDefault();
+                $("#id_login_form").show();
+            });
+
+            $("#id_submit_login_form").click(function(event){
+                event.preventDefault();
+
+                $.ajax({
+                    type:"POST",
+                    url: "{% url 'account_login' %}",
+                    data: $('#id_login_form').serialize(),
+                    success: function(response, status){
+                        $("#id_login_form").hide();
+                        $("#id_login_first_link").hide();
+                        location.reload();
+                    },
+                    error: function(xhr, status, error){
+                        $('#id_login_form').submit();
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid mt-4">
+        <div class="page-title">
+            <h1>{{ page.title }}</h1>
+        </div>
+        <div class="page-intro">
+            {{ page.intro|richtext }}
+        </div>
+        <div class="page-intro small">
+            {{ page.first_published_at }}
+        </div>
+    </div>
+
+    {% if page.themes.all %}
+        <div class="container-fluid mt-4">
+            {% trans "Themes:" %}
+            {% for themepage in page.themepages %}
+                    <a href="{{ themepage.url }}" class="badge badge-primary">{{ themepage.theme.name }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+     {% if page.body %}
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <div class="col-auto mb-3">
+                    {%  include "articles/streamfield.html" %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-auto">
+                <a href="{{ page.get_parent.url }}">Return to articles</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

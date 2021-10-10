@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static%}
+{% block body_class %}template-homepage{% endblock %}
+{% block content %}
+<!-- Render Top/Intro Block -->
+<div class="container-fluid container-dark py-5">
+    <div class="container card bg-primary mt-4 mb-5 p-3">
+        <div class="row justify-content-center">
+            <!-- Left hand column -->
+            <div class="col-12 col-md-6 align-items-center text-center order-2 order-md-1">
+                <h2 class="card-title text-warning text-center my-2">{{ page.title }}</h2>
+                <p class="card-body card-text text-white my-2">
+                    {{ page.author_bio|richtext }}
+                </p>
+            </div>
+            <!-- Right hand column -->
+            <div class="col align-items-center text-center order-1 order-md-2">
+                {% image page.author_photo min-2000x400 as author_photo %}
+                <img src="{{ author_photo.url }}" class="mw-100" style="max-height: 50vh">
+            </div>
+        <!-- Close Row -->
+        </div>
+    <!-- Close Card -->
+    </div>
+</div>
+{% endblock %}
