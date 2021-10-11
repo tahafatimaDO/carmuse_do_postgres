@@ -19,5 +19,15 @@
     </li>
   {% endfor %}
 </ul>
+{% with categories=page.categories.all %}
+                {% if categories %}
+
+                {% for category in categories %}
+<!--                <h6>Category:</h6>-->
+                        <a href="{% routablepageurl blog_page 'post_by_category' category.slug %}">
+                            {{ category.name }}</a>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
 
 <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>

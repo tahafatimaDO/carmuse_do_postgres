@@ -24,3 +24,13 @@ def categories_list(context):
         'blog_page': context['blog_page'],
         'categories': categories
     }
+
+
+@register.inclusion_tag("catalog/components/post_categories_list.html", takes_context=True)
+def post_categories_list(context):
+    page = context["page"]
+    categories = page.painting_categories.all()
+    return {
+        "request": context["request"],
+        "categories": categories,
+    }
