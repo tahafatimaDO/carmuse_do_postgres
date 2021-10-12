@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from urllib.parse import urlparse
+import dj_database_url
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -102,6 +104,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+DATABASES = {
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+    }
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -113,16 +118,16 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbcar',
-        'USER': 'caruser',
-        'PASSWORD': '2020',
-        'HOST': '',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'dbcar',
+#         'USER': 'caruser',
+#         'PASSWORD': '2020',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
