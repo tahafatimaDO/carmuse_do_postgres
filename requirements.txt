@@ -19,3 +19,4 @@ wagtailfontawesome
 django_widget_tweaks
 gunicorn
 wagtail_blocks
+dj-database-url
