@@ -1,5 +1,14 @@
-<div>
+{% load wagtailroutablepage_tags %}
+
+{% if tags %}
+<i class="fas fa-tag"></i>
+
+
     {% for tag in painting_tags %}
-        <span class="badge badge-secondary">{{ tag }}</span>
-    {% endfor %}
-</div>
+  <a href="{% routablepageurl painting_index_page 'post_by_tag' tag.slug %}">
+        {{ paintingpage_tag.painting_tag.name }}
+      </a>
+{% endfor %}
+
+    &nbsp;
+{% endif %}

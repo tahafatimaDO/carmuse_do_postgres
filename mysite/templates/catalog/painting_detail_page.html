@@ -107,8 +107,12 @@ h5, h6 {
         <div class="card-body">
             <div class="meta">
 
+                {% if page.date %}
                 <i class='fas fa-calendar-alt'></i>&nbsp;{{ self.date }}&nbsp;&nbsp;
+                {% endif %}
+                {% if page.width %}
                 <i class="fas fa-ruler-combined"></i>&nbsp;{{ self.width }}&nbsp;x&nbsp;{{ self.height }}&nbsp;cm
+                {% endif %}
                 <br>
 
                 <!--           Category-->
@@ -137,21 +141,29 @@ h5, h6 {
                 {% endif %}
                 {% endwith %}
 
+
                 &nbsp;&nbsp;
 <!--                <h6>Technique:</h6>-->
                 {% with mediums=page.mediums.all %}
                 {% if mediums %}
-                <i class='fas fa-paint-brush'></i>
                 {% for medium in mediums %}
+                <i class='fas fa-paint-brush'></i>
                 <a href="{% routablepageurl painting_index_page 'post_by_medium' medium.slug %}">
                     {{ medium.name }}
                 </a>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+
                 sur
+                {% with supports=page.supports.all %}
+                {% if supports %}
                 {% for support in supports %}
+
                 <a href="{% routablepageurl painting_index_page 'post_by_support' support.slug %}">
                     {{ support.name }}</herf>
                 </a>
-                {% endfor %}
+
                 {% endfor %}
                 {% endif %}
                 {% endwith %}
@@ -178,25 +190,34 @@ h5, h6 {
 
 
             <div class="tags">
-            {# Check if there are tags #}
+            {% with tags=page.tags.all %}
+                {% if tags %}
+                {# Check if there are tags #}
                 <h6>Tags:</h6>
                 <br>
         {% if page.tags.count %}
-        {% for tag in page.tags.all %}
+        {% for tag in tags %}
         {# Loop through all the existing tags #}
-        <a href="{{ self.get_parent.url }}?tag={{ tag.slug }}">{{ tag }}</a>&nbsp;&nbsp;
+            <a href="{% routablepageurl painting_index_page 'post_by_tag' tag%}">
+
+        {{ tag }}</a>&nbsp;&nbsp;
         {% endfor %}
         {% endif %}
+        {% endif %}
+        {% endwith %}
            </div>
+
 
             <br>
             <div class="tags">
-            {# Check if there are tags #}
+            {% if page.links %}
+                {# Check if there are tags #}
                 <h6>Links:</h6>
                 <br>
                 {% for block in page.links %}
         {% include_block block %}
     {% endfor %}
+                {% endif %}
            </div>
         </div>
 

@@ -2,17 +2,34 @@
 {% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-<section class="page-section bg-primary text-white mb-0" id="about">
+
+
+    <style>
+        .contact-form {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .contact-form li {
+            margin-bottom: 1.5rem;
+        }
+        .contact-form label {
+            display: block;
+            font-weight: bold;
+        }
+        .contact-form .helptext {
+            display: block;
+            font-size: 80%;
+        }
+    </style>
+
+
+
+<section class="page-section bg-secondary text-white mb-0" id="about">
     <div class="container">
         <!-- About Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-white">{{ self.title }}</h2>
+        <h1 class="page-section-heading text-center text-uppercase text-white">{{ self.title }}</h1>
         <h6 class="page-section-heading text-center text-uppercase text-white">{{ self.subtitle|richtext }}</h6>
-        <!-- Icon Divider-->
-        <div class="divider-custom divider-light">
-            <div class="divider-custom-line"></div>
-            <i class="fas fa-paint-brush"></i>
-            <div class="divider-custom-line"></div>
-        </div>
+
         <!-- About Section Content-->
         <div class="lead">
             <p>
@@ -22,11 +39,27 @@
         </div>
     </div>
 
-
+<!-- Contact Section Content-->
 </section>
 
 <section>
-    {% include 'contact/contact_page.html' %}
+    <div class="container mt-5 mb-5">
+        <h1 class="page-section-heading text-center text-uppercase text-red">{{ page.contact_section_title|richtext }}</h1>
+        <h6 class="page-section-heading text-center text-uppercase text-red">
+            {{ self.contact_subtitle|richtext }}
+        </h6>
+
+        <form action="{% pageurl page %}" method="POST">
+            {% csrf_token %}
+            <ul class="contact-form">
+                {{ form.as_ul }}
+            </ul>
+
+            <button type="submit" class="btn btn-success">
+                Submit Form
+            </button>
+        </form>
+    </div>
 </section>
 
 {% endblock %}

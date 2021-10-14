@@ -21,6 +21,15 @@
      1px 1px 0 #000;
 }
 
+.card {
+  border-radius: 50%;
+}
+
+
+.card-title{
+    color: #861657;
+    font-size: 1.5em;
+}
 </style>
 
 <div class="container">
@@ -28,11 +37,12 @@
 
     <div class="row justify-content-center">
         <div class="card-columns center">
-        {% for painter in painter_list %}
-            {% image painter.painter_image fill-300x300 as img %}
+        {% for painter in posts %}
+            <div class="card" style="width: 18rem;">
+            {% image painter.painter_image fill-200x200 as img %}
 
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ img.url }}" alt="{{ img.alt }}" class="painter-img-fluid w-100 rounded"/>
+
+                    <img src="{{ img.url }}" alt="{{ img.alt }}" class="painter-img-fluid w-100 rounded-circle"/>
 
                     <div class="card-img-overlay text-center">
                         <div class="card-title">{{ painter.title }}</div>

@@ -200,3 +200,16 @@ class PainterBlock(blocks.StructBlock):
         template = "streams/painter_block.html"
         icon = "placeholder"
         label = "Action"
+
+
+
+class CoverImageBlock(blocks.StructBlock):
+    image = ImageChooserBlock(null=True, blank=True)
+    teaser = RichtextBlock(null=True, blank=True, features=['h1', 'h2', 'h3', 'h4', "bold", "italic"])
+    sub_teaser = RichtextBlock(null=True, blank=True, features=['h4', 'h5', 'h6', "bold", "italic"])
+    #text = RichTextField(features=['h1', 'h2', 'h3', 'h4', "bold", "italic"])
+
+    class Meta:  # noqa
+        template = "streams/cover_image_block.html"
+        icon = "placeholder"
+        label = "Cover"

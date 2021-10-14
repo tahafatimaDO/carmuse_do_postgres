@@ -1,9 +1,26 @@
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags blogapp_tags %}
 
 <h1>{{ page.title }}</h1>
 
 {% image page.header_image original %}
 
+<div class="tags">
+            <div class="tags">
+            {% with tags=page.tags.all %}
+                {% if tags %}
+                {# Check if there are tags #}
+                <h6>Tags:</h6>
+                <br>
+        {% if page.tags.count %}
+        {% for tag in page.tags.all %}
+        {# Loop through all the existing tags #}
+        <a href="{{ self.get_parent.url }}?tag={{ tag.slug }}">{{ tag }}</a>&nbsp;&nbsp;
+        {% endfor %}
+        {% endif %}
+        {% endif %}
+        {% endwith %}
+           </div>
+</div>
   <div class="tags">
     <h3>Tags</h3>
     {% for tag in page.tags.all %}
@@ -19,15 +36,7 @@
     </li>
   {% endfor %}
 </ul>
-{% with categories=page.categories.all %}
-                {% if categories %}
 
-                {% for category in categories %}
-<!--                <h6>Category:</h6>-->
-                        <a href="{% routablepageurl blog_page 'post_by_category' category.slug %}">
-                            {{ category.name }}</a>
-                    {% endfor %}
-                {% endif %}
-                {% endwith %}
+
 
 <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>

@@ -5,6 +5,7 @@ from catalog.models import PaintingPageTag as Tag
 from catalog.models import PaintingLocation as Location
 from catalog.models import PaintingLocation as Medium
 from catalog.models import PaintingLocation as Support
+from catalog.models import PaintingDetailPage
 from django.template import Library, loader
 # from blog.md_converter.utils import render_markdown
 
@@ -88,6 +89,7 @@ def painting_locations_list(context):
         "locations": locations,
     }
 
+
 @register.inclusion_tag('catalog/components/mediums_list.html',
                         takes_context=True)
 def mediums_list(context):
@@ -129,6 +131,15 @@ def painting_supports_list(context):
     }
 
 
+@register.inclusion_tag('catalog/components/painters_list.html',
+                        takes_context=True)
+def painter_list(context):
+    painter = PaintingDetailPage.painter.objects.all()
+    return {
+        'request': context['request'],
+        'painting_index_page': context['painting_index_page'],
+        'painter': painter
+    }
 #
 # @register.simple_tag
 # def url_replace(request, **kwargs):

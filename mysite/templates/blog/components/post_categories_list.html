@@ -1,11 +1,7 @@
-{% load wagtailroutablepage_tags %}
-
-{% if categories %}
-    <i class="fas fa-tag"></i>
-    {% for postpage_category in categories %}
-  <a href="{% routablepageurl blogpage 'post_by_category' category.slug %}">
-        {{ blogpage_category.postpage_category.name }}
-      </a>
+{% if post_categories %}
+    <i class="bi bi-tag-fill"></i>
+    {% for postpage_category in post_categories %}
+        {{ postpage_category.blog_category.name }}
     {% endfor %}
     &nbsp;
 {% endif %}
