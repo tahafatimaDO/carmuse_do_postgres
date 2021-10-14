@@ -76,6 +76,27 @@ register_snippet(PaintingCategory)
 
 
 # Location
+class PaintingPagePaintingLocation(models.Model):
+    page = ParentalKey(
+        "catalog.PaintingDetailPage", on_delete=models.CASCADE, related_name="locations"
+    )
+    painting_location = models.ForeignKey(
+        "catalog.PaintingLocation", on_delete=models.CASCADE, related_name="post_pages"
+    )
+
+    panels = [
+        SnippetChooserPanel("painting_location"),
+    ]
+
+    class Meta:
+        unique_together = ("page", "painting_location")
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context['painting_index_page'] = self.get_parent().specific
+        return context
+
+
 class PaintingLocation(models.Model):
     """Painting location for a snippet."""
 
@@ -213,9 +234,9 @@ class PaintingDetailPage(Page):
     motif = ChoiceBlock(choices=MOTIF_TYPES, help_text='The subject-matter')
     tags = ClusterTaggableManager(through="catalog.PaintingPageTag", blank=True)
     #categories = ParentalManyToManyField("catalog.PaintingCategory", blank=True)
-    locations = ParentalManyToManyField("catalog.PaintingLocation", blank=True)
-    mediums = ParentalManyToManyField("catalog.PaintingMedium", blank=True)
-    supports = ParentalManyToManyField("catalog.PaintingSupport", blank=True)
+    #locations = ParentalManyToManyField("catalog.PaintingLocation", blank=True)
+    #mediums = ParentalManyToManyField("catalog.PaintingMedium", blank=True)
+    #supports = ParentalManyToManyField("catalog.PaintingSupport", blank=True)
     description = StreamField(
         [
             ("simple_richtext", blocks.SimpleRichtextBlock()),
@@ -265,6 +286,9 @@ class PaintingDetailPage(Page):
         # ),
         FieldPanel("tags"),
         InlinePanel("categories", label="category"),
+        InlinePanel("locations", label="location"),
+        InlinePanel("mediums", label="medium"),
+        InlinePanel("supports", label="support"),
 
         # MultiFieldPanel(
         #     [
@@ -274,26 +298,26 @@ class PaintingDetailPage(Page):
         #     classname="collapsible collapsed",
         # ),
 
-        MultiFieldPanel([
-            FieldPanel('locations', widget=forms.CheckboxSelectMultiple),
-        ],
-            heading="Location",
-            classname="collapsible collapsed",
-        ),
-
-        MultiFieldPanel([
-            FieldPanel('mediums', widget=forms.CheckboxSelectMultiple),
-        ],
-            heading="Medium",
-            classname="collapsible collapsed",
-        ),
-
-        MultiFieldPanel([
-            FieldPanel('supports', widget=forms.CheckboxSelectMultiple),
-        ],
-            heading="Support",
-            classname="collapsible collapsed",
-        ),
+        # MultiFieldPanel([
+        #     FieldPanel('locations', widget=forms.CheckboxSelectMultiple),
+        # ],
+        #     heading="Location",
+        #     classname="collapsible collapsed",
+        # ),
+        #
+        # MultiFieldPanel([
+        #     FieldPanel('mediums', widget=forms.CheckboxSelectMultiple),
+        # ],
+        #     heading="Medium",
+        #     classname="collapsible collapsed",
+        # ),
+        #
+        # MultiFieldPanel([
+        #     FieldPanel('supports', widget=forms.CheckboxSelectMultiple),
+        # ],
+        #     heading="Support",
+        #     classname="collapsible collapsed",
+        # ),
         StreamFieldPanel('links'),
         StreamFieldPanel('initial_inventory'),
 
@@ -324,6 +348,27 @@ class PaintingPageTag(TaggedItemBase):
 
 
 # SUPPORT
+class PaintingPagePaintingSupport(models.Model):
+    page = ParentalKey(
+        "catalog.PaintingDetailPage", on_delete=models.CASCADE, related_name="supports"
+    )
+    painting_support = models.ForeignKey(
+        "catalog.PaintingSupport", on_delete=models.CASCADE, related_name="post_pages"
+    )
+
+    panels = [
+        SnippetChooserPanel("painting_support"),
+    ]
+
+    class Meta:
+        unique_together = ("page", "painting_support")
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context['painting_index_page'] = self.get_parent().specific
+        return context
+
+
 @register_snippet
 class PaintingSupport(models.Model):
     """Painting support for a snippet."""
@@ -349,6 +394,28 @@ class PaintingSupport(models.Model):
 
 
 # Medium
+class PaintingPagePaintingMedium(models.Model):
+    page = ParentalKey(
+        "catalog.PaintingDetailPage", on_delete=models.CASCADE, related_name="mediums"
+    )
+    painting_medium = models.ForeignKey(
+        "catalog.PaintingMedium", on_delete=models.CASCADE, related_name="post_pages"
+    )
+
+    panels = [
+        SnippetChooserPanel("painting_medium"),
+    ]
+
+    class Meta:
+        unique_together = ("page", "painting_medium")
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context['painting_index_page'] = self.get_parent().specific
+        return context
+
+
+
 @register_snippet
 class PaintingMedium(models.Model):
     """Painting medium for a snippet."""
