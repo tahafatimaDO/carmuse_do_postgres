@@ -1,0 +1,32 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<style>
+
+.dcard {
+    scale: 50%;
+}
+
+.spec {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+</style>
+
+{% image self.image scale-50 as img %}
+<div class="card-top-img">
+
+    <img src="{{ img.url }}" alt="{{ img.alt }}"/>
+
+    <div class="card-body card-img-overlay align-items-center d-flex text-white flex-column justify-content-center">
+
+            {{ self.teaser }}
+
+             {{ self.sub_teaser }}
+
+         </div>
+</div>
+
+
+
