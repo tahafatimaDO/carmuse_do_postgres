@@ -122,23 +122,23 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
     DATABASES = {
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
-if DEVELOPMENT_MODE is True:
-    DATABASES = {
-        "default": {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'dbcar',
-            'USER': 'caruser',
-            'PASSWORD': '2020',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
-    }
-elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-    if os.getenv("DATABASE_URL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-    }
+# if DEVELOPMENT_MODE is True:
+#     DATABASES = {
+#         "default": {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'dbcar',
+#             'USER': 'caruser',
+#             'PASSWORD': '2020',
+#             'HOST': '127.0.0.1',
+#             'PORT': '5432',
+#         }
+#     }
+# elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+#     if os.getenv("DATABASE_URL", None) is None:
+#         raise Exception("DATABASE_URL environment variable not defined")
+#     DATABASES = {
+#         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+#     }
 
 if os.environ.get('DATABASE_URL'):
     DATABASES['default'] =dj_database_url.config(default=os.environ['DATABASE_URL'])
