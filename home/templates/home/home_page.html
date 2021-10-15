@@ -1,21 +1,67 @@
+{# templates/home/home_page.html #}
 {% extends "base.html" %}
-{% load static %}
 
-{% block body_class %}template-homepage{% endblock %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+<body>
 
 {% block extra_css %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
-{% endblock extra_css %}
+<style>
+
+
+.card img{
+    height: 100vh;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+}
+
+body{
+    background: #f1e3d3;
+}
+
+.card{
+  color: #202020 ;
+  background-color: #202020  !important;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+
+
+</style>
+
+{% endblock %}
+
 
 {% block content %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-{% include 'home/welcome_page.html' %}
+{% if page.cover %}
+{{ page.cover }}
+{% endif %}
 
-{% endblock content %}
+{% if page.banner %}
+{{ page.cover }}
+{% endif %}
+
+{% if page.carousel_images %}
+{% include "home/home_carousel.html" %}
+{% endif %}
+
+
+{% if page.content %}
+{{ page.content }}
+{% endif %}
+
+</body>
+
+ {% endblock %}

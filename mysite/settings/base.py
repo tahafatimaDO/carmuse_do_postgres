@@ -34,14 +34,14 @@ INSTALLED_APPS = [
     'catalog',
     'contact',
     'expo',
-    #'flex',
+    'flex',
     'menus',
     'painter',
     'streams',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.modeladmin',
-    'wagtailmenus',
+    #'wagtailmenus',
     'wagtail.contrib.redirects',
     "wagtail.contrib.routable_page",
     'wagtail.embeds',
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'wagtailfontawesome',
     'widget_tweaks',
     'wagtail_blocks',
+    'dbbackup',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -97,7 +98,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'wagtailmenus.context_processors.wagtailmenus',
+                #'wagtailmenus.context_processors.wagtailmenus',
             ],
         },
     },
@@ -105,22 +106,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
-
-
-if DEVELOPMENT_MODE is True:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
-    }
-elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-    if os.getenv("DATABASE_URL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-    }
+# DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
+#
+#
+# if DEVELOPMENT_MODE is True:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#         }
+#     }
+# elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+#     if os.getenv("DATABASE_URL", None) is None:
+#         raise Exception("DATABASE_URL environment variable not defined")
+#     DATABASES = {
+#         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+#     }
 # if DEVELOPMENT_MODE is True:
 #     DATABASES = {
 #         "default": {
@@ -145,12 +146,12 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 # DATABASES = {
 #     'default': {
@@ -240,3 +241,7 @@ NOCAPTCHA = True
 #DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#DB BACKUPS
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': os.path.join(BASE_DIR, '../backups')}
