@@ -1,1 +1,3 @@
 DATABASE_URL=postgresql://db:QpDSYYvpaqwvB4kV@app-6aec408f-4bc1-4279-89e7-e4c19f90ae55-do-user-9160676-0.b.db.ondigitalocean.com:25060/db?sslmode=require
+DEBUG=True
+SECRET_KEY=django-insecure-vb7q_xxf5yp==!n9a*h)w6pmtv--@rsul@5h73t_zleqy7+1-b
