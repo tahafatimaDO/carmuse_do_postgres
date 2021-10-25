@@ -122,8 +122,8 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
    
-#if os.environ.get('DATABASE_URL'):
-#    DATABASES['default'] =dj_database_url.config(default=os.environ['DATABASE_URL'])
+if os.environ.get('DATABASE_URL'):
+    DATABASES['default'] =dj_database_url.config(default=os.environ['DATABASE_URL'])
 
 #DATABASES = {
 #    'default': {
