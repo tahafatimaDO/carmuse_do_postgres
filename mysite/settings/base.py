@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'home',
     'search',
 
+    'about',
     'blog',
     'catalog',
     'contact',
@@ -41,7 +42,6 @@ INSTALLED_APPS = [
 
     'wagtail.contrib.forms',
     'wagtail.contrib.modeladmin',
-    #'wagtailmenus',
     'wagtail.contrib.redirects',
     "wagtail.contrib.routable_page",
     'wagtail.embeds',
@@ -108,7 +108,6 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
-
 if DEVELOPMENT_MODE is True:
     DATABASES = {
         "default": {
@@ -122,9 +121,17 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
     DATABASES = {
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
-    
-if os.environ.get('DATABASE_URL'):
-    DATABASES['default'] =dj_database_url.config(default=os.environ['DATABASE_URL'])
+   
+#if os.environ.get('DATABASE_URL'):
+#    DATABASES['default'] =dj_database_url.config(default=os.environ['DATABASE_URL'])
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

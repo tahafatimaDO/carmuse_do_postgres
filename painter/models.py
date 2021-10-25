@@ -26,9 +26,9 @@ from streams import blocks
 from wagtail.embeds.blocks import EmbedBlock
 
 
-class PaintersPage(Page):
+class PaintersPage(RoutablePageMixin, Page):
 
-    template = "catalog/painting_index_page.html"
+    template = "painter/painters_page.html"
 
     subtitle = RichTextField(
         features=['h6', 'h5', 'bold', 'italic'],
@@ -42,13 +42,36 @@ class PaintersPage(Page):
         FieldPanel("subtitle"),
     ]
 
-    def serve(self, request):
-        """Custom serve method"""
-        painter_list = PainterPage.objects.live().order_by('first_name')
-        return render(request, 'painters/painters_index.html', {
-            'page': self,
-            'painter_list': painter_list
-        })
+    def get_context(self, request, *args, **kwargs):
+        context = super(PaintersPage, self).get_context(request, *args, **kwargs)
+        context['posts'] = self.posts
+        context['painters_page'] = self
+        return context
+
+    def get_posts(self):
+        return PainterPage.objects.descendant_of(self).live()
+
+    @route(r'^tag/(?P<tag>[-\w]+)/$')
+    def post_by_tag(self, request, tag, *args, **kwargs):
+        self.search_type = 'tag'
+        self.search_term = tag
+        self.posts = self.get_posts().filter(tags__slug=tag)
+        return Page.serve(self, request, *args, **kwargs)
+
+    @route(r'^$')
+    def post_list(self, request, *args, **kwargs):
+        self.posts = self.get_posts()
+        return Page.serve(self, request, *args, **kwargs)
+
+    @route(r"^search/$")
+    def post_search(self, request, *args, **kwargs):
+        search_query = request.GET.get("q", None)
+        self.posts = self.get_posts()
+        if search_query:
+            self.filter_term = search_query
+            self.filter_type = 'search'
+            self.posts = self.posts.search(search_query)
+        return self.render(request)
 
 
 
@@ -60,7 +83,7 @@ class PainterPage(Page):
 
     painter_image = models.ForeignKey(
         "wagtailimages.Image",
-        blank=False,
+        blank=True,
         null=True,
         related_name="+",
         on_delete=models.SET_NULL,
@@ -70,24 +93,19 @@ class PainterPage(Page):
     ])
     artist_dates = StreamField([
         ('dates', blocks.DateBlock()),
-    ])
-    #artist_links = StreamField([
-     #    ('links', blocks.CTABlock()),
-    #])
-    bio = RichTextField(null=True, features=["bold", "italic"])
-    pitch = RichTextField(null=True, features=["bold", "italic"])
+    ], blank=True, null=True)
+    bio = RichTextField(null=True, blank=True, features=["bold", "italic"])
+    pitch = RichTextField(null=True, blank=True, features=["bold", "italic"])
     links = StreamField([
-         ('link', blocks.ButtonBlock(null=True, blanc=True)),
-    ])
+         ('link', blocks.ButtonBlock()),
+    ], blank=True, null=True)
 
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('painter_image'),
         StreamFieldPanel('artist_names'),
-        #StreamFieldPanel('artist_dates'),
+        StreamFieldPanel('artist_dates'),
         FieldPanel('bio'),
         FieldPanel('pitch'),
-        #StreamFieldPanel('artist_links'),
         StreamFieldPanel('links'),
-        #InlinePanel('painter_links', label="link"),
     ]

@@ -1,0 +1,30 @@
+body{
+    background: #f1e3d3 !important;
+}
+
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+footer {
+    background-color: #6d597a;
+    height: 50px;
+    padding-top: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+footer ul {
+    list-style-type: none;
+}
+footer li span, footer li a, footer li a:hover {
+    display: inline;
+    color: white;
+    font-size: 12px;
+    margin-right: 40px;
+}
