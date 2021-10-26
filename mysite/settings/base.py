@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from django.core.management.utils import get_random_secret_key
 from pathlib import Path
 import os
 import sys
@@ -106,6 +105,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
+
+DATABASE_URL=postgresql://db:QpDSYYvpaqwvB4kV@app-6aec408f-4bc1-4279-89e7-e4c19f90ae55-do-user-9160676-0.b.db.ondigitalocean.com:25060/db?sslmode=require
 
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
