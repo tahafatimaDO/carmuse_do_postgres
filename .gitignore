@@ -8,7 +8,6 @@ __pycache__
 *.pyc
 .DS_Store
 *.swp
-/venv/
 /tmp/
 /.vagrant/
 /Vagrantfile.local
@@ -21,7 +20,6 @@ coverage
 
 # Distribution / packaging
 .Python
-env/
 build/
 develop-eggs/
 dist/
