@@ -13,13 +13,15 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from pathlib import Path
 import os
+import environ
 import sys
 import dj_database_url
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
-
+env = environ.Env()
+environ.Env.read_env()  # reading .env file
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -106,8 +108,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-DATABASE_URL=postgresql://db:QpDSYYvpaqwvB4kV@app-6aec408f-4bc1-4279-89e7-e4c19f90ae55-do-user-9160676-0.b.db.ondigitalocean.com:25060/db?sslmode=require
-
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
 if DEVELOPMENT_MODE is True:
@@ -121,7 +121,7 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
     if os.getenv("DATABASE_URL", None) is None:
         raise Exception("DATABASE_URL environment variable not defined")
     DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+        "default": dj_database_url.parse(read os.environ("DATABASE_URL")),
     }
    
 #if os.environ.get('DATABASE_URL'):
