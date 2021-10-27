@@ -31,15 +31,7 @@ class About(AbstractEmailForm, Page):
     template = "about/about_page.html"
     landing_page_template = "about/contact_page_landing.html"
 
-    max_count = 1
-
-    # about_subtitle = RichTextField(
-    #     features=['h6', 'h5', 'bold', 'italic'],
-    #     max_length=250,
-    #     blank=True,
-    #     null=True,
-    #     help_text='Catchy, short informative description of the page'
-    # )
+    #max_count = 1
 
     our_mission = RichTextField(null=True, blank=True, help_text='Describe your mission')
     contact_section_title = RichTextField(blank=True)
@@ -65,7 +57,3 @@ class About(AbstractEmailForm, Page):
 
     def get_form_fields(self):
         return self.custom_form_fields.all()
-
-    # @register.inclusion_tag('contact_form.html')
-    # def contact_form():
-    #     return {'form': ContactForm()}
