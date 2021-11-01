@@ -223,7 +223,7 @@ class PaintingDetailPage(Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel("image"),
 
-        PageChooserPanel('painter'),    # ('painter', 'painter.PainterPage'),
+        PageChooserPanel('painter', 'painter.PainterPage'),    # ('painter', 'painter.PainterPage'),
         StreamFieldPanel("description"),
         FieldPanel('date'),
         MultiFieldPanel(
