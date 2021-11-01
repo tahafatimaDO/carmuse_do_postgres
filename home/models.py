@@ -48,7 +48,7 @@ class HomePage(RoutablePageMixin, Page):
 
     teaser =RichTextField(null=True, blank=True, features=["bold", "italic"])
     sub_teaser = RichTextField(null=True, blank=True, features=['h4', 'h5', 'h6', "bold", "italic"])
-    cover_image =models.ForeignKey(
+    cover_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=False,
