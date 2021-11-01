@@ -198,6 +198,9 @@ class PaintingDetailPage(Page):
     locations = ParentalManyToManyField("catalog.PaintingLocation", blank=True)
     mediums = ParentalManyToManyField("catalog.PaintingMedium", blank=True)
     supports = ParentalManyToManyField("catalog.PaintingSupport", blank=True)
+    dbreference = models.CharField(max_length=50, null=True, blank=True, help_text="Entry from initial Excel Inventory by JMC, for internal needs only", default='a')
+    remark = models.CharField(max_length=150, null=True, blank=True, help_text="Entry from initial Excel Inventory by JMC, for internal needs only", default='a')
+    signature = models.BooleanField(null=True, blank=True)
     description = StreamField(
         [
             ("simple_richtext", blocks.SimpleRichtextBlock()),
@@ -210,18 +213,9 @@ class PaintingDetailPage(Page):
         ('links', blocks.ButtonBlock(null=True, blank=True)),
     ], null=True, blank=True)
 
-    initial_inventory = StreamField([
-        ('dbreference', CharBlock(max_length=50, null=True, blank=True,
-                                         help_text="Entry from initial Excel Inventory by JMC, for internal needs only", default='a')),
-
-        ('remark', CharBlock(max_length=150, null=True, blank=True,
-                                  help_text="Entry from initial Excel Inventory by JMC, for internal needs only", default='a')),
-        ('signature', BooleanBlock(null=True, blank=True, detault='Yes')),
-    ], null=True, blank=True)
-
     image = models.ForeignKey(
         "wagtailimages.Image",
-        blank=False,
+        blank=True,
         null=True,
         related_name='+',
         on_delete=models.SET_NULL,)
@@ -242,9 +236,6 @@ class PaintingDetailPage(Page):
         ),
 
 
-        # MultiFieldPanel(
-        #    [StreamFieldPanel('technical_details')]
-        # ),
         FieldPanel("tags"),
 
         MultiFieldPanel(
@@ -276,7 +267,15 @@ class PaintingDetailPage(Page):
             classname="collapsible collapsed",
         ),
         StreamFieldPanel('links'),
-        StreamFieldPanel('initial_inventory'),
+        
+        MultiFieldPanel([
+            FieldPanel("dbreference"),
+            FieldPanel("remark"),
+            FieldPanel("signature"),
+        ],
+            heading="Initial inventory for internal use",
+            classname = "collapsible collapsed",
+        ),
 
     ]
 

@@ -1,0 +1,91 @@
+inventory_04
+id;title;dbreference;painter;description;motif;medium;support;category;location;image;date;width;hieght;signature;remark;reference
+id;title;dbreference;painter;description;motif;medium;support;category;location;image;date;width;hieght;signature;remark;reference
+1;Fabregas, vue sur Toulon et St Mandrier;A01;1;Fabregas, vue sur Toulon et St Mandrier;;huile ;bois;;;Fabregas, vue sur Toulon et St Mandrier;;140.0;78.0;oui;;A01
+2;profils Gabrielle et Claude;A02;1;2 dessins au format carte portale, profils Gabrielle et Claude;;crayon;papier;dessin;;profils Gabrielle et Claude;1917-02-23;9.5;14.5;oui;2 dessins au format carte portale,;A02
+3;route, pins, mer;A03;1;route, pins, mer;;huile ;bois;;;route, pins, mer;;72.5;95.0;oui;;A03
+4;Le Lignon avec Tence au fond;A04;1;Le Lignon (rivière) avec Tence au fond;;huile;toile;;;Le Lignon avec Tence au fond;;55.0;38.0;oui;;A04
+5;Jo et Gabrielle à Méounes;A05;1;Jo et Gabrielle à Méounes;;huile ;bois;;;Jo et Gabrielle à Méounes;;46.0;38.0;oui;;A05
+6;Cap Brun;A06;1;Cap Brun;;huile;toile;;;Cap Brun;;40.0;65.0;oui;;A06
+7;autoportrait de profil;A07;1;autoportrait de profil;;pastel;papier;;;autoportrait de profil;;41.5;51.5;oui;;A07
+8;Claude;A08;1;Claude;;pastel;papier;;;Claude;;30.5;38.0;non;;A08
+9;Méounes, rue  Basse;A09;1;Méounes, rue Basse;;huile ;bois;;;Méounes, rue  Basse;;46.0;55.0;oui;;A09
+10;feu de joie;A10;1;feux de joie (feu de la St Jean ?);;huile ;bois;;;feu de joie;;42.0;57.0;oui;;A10
+11;chemin, arbres, mer, falaises;A11;1;chemin, arbres, mer, falaises;;huile ;toile;;;chemin, arbres, mer, falaises;;61.0;43.0;oui;;A11
+12;barques au bord;A12;1;barques au bord d’un lac (Léman?);;huile ;toile;;Lac Léman;barques au bord;;61.0;46.0;oui;;A12
+13;Alger, l'Amirauté;A13;1;Alger, l’Amirauté (original ou copie, l’autre est chez Marie-José);;huile ;toile;;;Alger, l'Amirauté;;46.0;61.0;oui;;A13
+14;Gabrielle et 2 enfants;A14;1;Gabrielle et 2 enfants à La Garonne;;huile ;toile;;La Garonne;Gabrielle et 2 enfants;;45.5;61.5;oui;Gabrielle et 2 enfants à La Garonne;A14
+15;rivière au fond d’une vallée;A15;1;rivière au fond d’une vallée;;huile ;toile;;valée d'Aston;rivière au fond d’une vallée;;53.5;73.5;oui;;A15
+16;pêcheur réparant son filet;A16;1;Cap Brun, crique avec bateau de pêche et pêcheur réparant son filet;;huile ;toile;;Cap Brun;pêcheur réparant son filet;;77.0;45.0;oui;A16 Cap Brun, crique avec bateau de pêche et pêcheur réparant son filet;A16
+17;Annie, médaillon;A17;1;Annie;;plâtre;;;;Annie, médaillon;;27.0;32.0;oui;;A17
+18;géraniums rouges;A18;1;géraniums rouges;;;papier;;;géraniums rouges;;47.0;29.0;oui;;A18
+19;Jo jouant du piano;A19;1;Jo jouant du piano;;huile ;toile;;;Jo jouant du piano;;32.0;41.0;non;;A19
+20;champ couleur blé avec arbres;A20;1;champ couleur blé avec arbres;;huile ;bois;;;champ couleur blé avec arbres;;26.0;21.0;oui;date au dos du tableau;A20
+21;meules de blé;A21;1;meules de blé à Vilaz Colmaz;;huile ;bois;;Vilaz Colmaz;meules de blé;;26.0;21.0;oui;;A21
+22;champ vert, arbres et montagnes en arrière plan;A22;1;champ vert, arbres et montagnes en arrière plan;;huile ;bois;;;champ vert, arbres et montagnes en arrière plan;;35.0;27.0;oui;;A22
+23;meules de blé;A23;1;meules (de blé) à Tence (Haute Loire);;huile ;bois;;Tence;meules de blé;;35.0;27.0;oui;meules (de blé) à Tence (Haute Loire);A23
+24;falaises;A24;1;mer avec falaises sur la gauche;;huile ;bois;;Sainte Marguerite;falaises;;35.0;27.0;oui;date au dos du tableau;A24
+25;mer avec petite falaise rouge;A25;1;mer avec petite falaise rouge;;huile ;bois;;;mer avec petite falaise rouge;;35.0;27.5;oui;;A25
+26;chemin et arbres;A26;1;chemin et arbres (Villeneuve sur Lot);;huile ;bois;;Villeneuve sur Lot;chemin et arbres;;9.5;18.0;oui;date au dos du tableau;A26
+27;bord de mer avec bateaux;A27;1;bord de mer avec bateaux;;huile ;bois;;;bord de mer avec bateaux;;34.0;27.0;non;bateaux;A27
+28;bateaux à voile (tartanes);A28;1;bateaux à voile (tartanes) au port;;huile ;bois;;;bateaux à voile (tartanes);;34.0;27.0;oui;bateaux à voile (tartanes) au port;A28
+29;route de terre en sous bois;A29;1;route de terre en sous bois près de Genève;;;carton;;Genève;route de terre en sous bois;;34.0;27.0;oui;;A29
+30;champs blé montagnes;A30;1;champs, blé et verdure, montagnes au lointain;;huile ;bois;;;champs blé montagnes;;35.0;27.5;oui;champs, blé et verdure, montagnes au lointain;A30
+31;village et mer;A31;1;au loin, village et mer;;huile ;bois;;;village et mer;;35.0;27.0;oui;au loin village et mer;A31
+32;rocher de l'anneau;A32;1;rocher de l’anneau;;huile ;bois;;;rocher de l'anneau;;26.5;35.5;oui;;A32
+33;route de Signe soir;A33;1;route de Signe, effet du soir;;huile ;bois;;;route de Signe soir;;35.0;27.5;oui;route de Signe, effet du soir;A33
+34;montagne et campagne;A34;1;montagne (Salève?) et campagne;;huile ;bois;;;montagne et campagne;;35.0;27.0;oui;;A34
+35;mauresque assise par terre;A35;1;mauresque assise par terre;;huile ;bois;;;mauresque assise par terre;;34.0;26.0;oui;;A35
+36;La Cride;A36;1;La Cride;;huile ;bois;;;La Cride;;26.5;35.0;oui;;A36
+37;Le Lamia, voilier à l'ancrage;A37;1;Le Lamia, voilier à l'ancrage;;huile ;bois;;;Le Lamia, voilier à l'ancrage;;27.0;35.0;oui;;A37
+38;bord de mer montagne;A38;1;bord de mer avec montagne en arrière plan;;huile ;bois;;;bord de mer montagne;;34.0;27.0;oui;;A38
+39;bord de mer montagnee;A39;1;vue mer avec pins, falaises et montagne;;huile ;bois;;;bord de mer montagnee;;46.0;27.0;non;;A39
+40;Cap Cicié;A40;1;Cap Cicié;;huile ;bois;;;Cap Cicié;;46.0;27.0;oui;;A40
+41;Lys dans un vase;J01;1;nature morte, vase avec 4 lys et livre;;huile;toile;;;Lys dans un vase;;35.0;45.0;bas gauche;;J01
+42;Les Embiers;J02;1;Les Embiers;;huile;toile;;;Les Embiers;;60.0;37.0;bas droite;;J02
+43;Bord de mer avec pins et personnage;J03;1;bord de mer, rocher, femme assise de dos;;huile ;bois;;;Bord de mer avec pins et personnage;;98.0;51.5;bas droite;;J03
+44;Barque avec mâts;J04;1;barque avec mâts;;huile ;bois;;;Barque avec mâts;;25.0;20.0;bas gauche;date au dos;J04
+45;2 bartques sur le Lot;J05;1;Villeneuve sur Lot, 2 barques sur le Lot;;huile ;toile;;Villeneuve sur Lot;2 bartques sur le Lot;;34.5;22.5;bas gauche;;J05
+46;Mère de Josphine Cariage-Morel;J06;1;Mère de Josphine Cariage-Morel;;huile ;toile;;;Mère de Josphine Cariage-Morel;;50.0;61.0;sans;;J06
+47;Paysage de montagne avec ferme et faucheurs;J07;1;paysage de montagne, ferme et faucheurs;;huile ;carton;;;Paysage de montagne avec ferme et faucheurs;;35.0;26.5;bas gauche;;J07
+48;rivière au couchant;J08;1;rivière au couché du soleil;;huile ;bois;miniature;;rivière au couchant;;18.0;10.0;bas gauche;"jeudi; rivière au couchant, huile sur bois, 9x18";J08
+49;montagnes;J09;1;sommets de montagnes après le coucher du soleil (ou avant le lever du soleil);;huile ;bois;miniature;;montagnes;;18.0;10.0;bas droite;mardi, huile sur bois, 9x18, montagnes;J09
+50;Rivière avec pont, barque et personnages;J10;1;bord de rivière avec pont et personnages;;huile ;bois;miniature;;Rivière avec pont, barque et personnages;;18.0;10.0;bas droite;;J10
+51;rivière, pont chemin;J11;1;bord de rivière avec pont;;huile ;bois;miniature;;rivière, pont chemin;;10.0;18.0;bas gauche;dimanche;J11
+52;Méounes ruelle avec ruisseau et lavandières;J12;1;ruelle avec ruisseau et lavandières;;huile ;bois;;;Méounes ruelle avec ruisseau et lavandières;;26.5;45.0;bas gauche;;J12
+53;Une soeur de Marius Louise ou Mathilde;J13;1;portrait de femme, cheveux noirs, chemisier blanc, fond lie de vin;;huile ;toile;;;Une soeur de Marius Louise ou Mathilde;;46.0;55.5;sans;;J13
+54;Gabrielle Cariage cousant;J14;1;Gabrielle Cariage cousant;;huile ;bois;;;Gabrielle Cariage cousant;;46.0;56.5;sans;date au dos;J14
+55;Méounes, place de l'Ecole;J15;1;Méounes, place de l'Ecole;;huile ;toile;;;Méounes, place de l'Ecole;;55.0;38.0;bas gauche;;J15
+56;Autoportrait;J16;1;Marius, autoportrait;;huile ;bois;;;Autoportrait;;46.0;61.0;sans;;J16
+57;Portrait de Fanny, la mère de Marius;J17;1;portrait de Fanny, la mère de Marius;;huile ;toile;;;Portrait de Fanny, la mère de Marius;;46.0;55.0;sans;;J17
+58;Portrait de Claude Cariage adolescent;J18;1;portrait de Claude Cariage adolescent assis avec un livre en mains;;huile ;toile;;;Portrait de Claude Cariage adolescent;;56.0;71.0;bas droite;;J18
+59;Nature morte, livres, etc';J19;1;nature morte, livres, statue et chandelier en forme de gryphon;;huile ;toile;;;Nature morte, livres, etc';;40.5;30.0;sans;;J19
+60;môle de la pêcherie;J20;1;môle de la pêche;;huile ;bois;;;môle de la pêcherie;;35.5;27.5;bas droite;;J20
+61;Manque;J21;1;paysage de montagne ;;huile ;bois;;;;;34.5;27.0;bas gauche;Pas d'image;J21
+62;Pointe de la Tourette;J22;1;Pointe de la Tourette;;huile ;bois;;;Pointe de la Tourette;;35.0;27.0;bas droite;"est en double avec Marie-Jo (M71) ; celui de Marie-Jo est grand";J22
+63;cour de fermes à la montagne;J23;1;fermes à la montagne;;huile ;pavatex;;;cour de fermes à la montagne;;35.0;26.0;bas droite;;J23
+64;évent. les Gorges de Palestro;J24;1;Éventuellement les Gorges de Palestro;;huile ;bois;;;évent. les Gorges de Palestro;;22.5;32.0;sans;;J24
+65;roulottes;J25;1;roulottes;;papier collé;carton;;;roulottes;;16.0;22.0;bas gauche;;J25
+66;Joséphine Cariage, tableau I;J26;1;portrait de Joséphine Cariage-Morel (1) assise sur un fauteuil avec livres;;huile ;toile;;;Joséphine Cariage, tableau I;;79.0;98.0;sur le dos d'un livre;"(1) née le 18.09.1881 ou le 28.11.1881 ; avait 27 ans au moment de la réalisation du tableau";J26
+67;barque à voile à sa bouée;J27;1;barque à voile à sa bouée;;huile;p1;;;barque à voile à sa bouée;;22.0;16.0;oui;;J27
+68;Château de Lordat;J28;1;Château de Lordat;;huile;toile;;;Château de Lordat;;60.0;42.0;oui;;J28
+69;chemin dans la montagne;J29;1;chemin dans la montagne;;huile;bois;;;chemin dans la montagne;;27.0;32.0;oui;;J29
+70;Claude, VIII;J30;1;portrait de Claude (avec une chemise ouverte);;huile;toile;;;Claude, VIII;1944-01-01;43.0;52.0;oui;;J30
+71;falaises Sainte Marguerite;J31;1;falaises Sainte Marguerite;;huile;bois;;;falaises Sainte Marguerite;;72.0;53.0;oui;;J31
+72;grange à la montagne;J32;1;grange à la montagne A;;huile;pavatex;;;grange à la montagne;;19.0;24.0;non;;J32
+73;Manque;J33;1;grange à la montagne B;;huile;pavatex;;;;;35.0;26.0;oui;pas d'image;J33
+74;bateaux de guerre;J34;1;2 bateaux de guerre;;huile;bois;;;bateaux de guerre;;18.0;26.5;non;;J34
+75;Jo à sa fenêtre;J35;1;Jo à sa fenêtre;;huile;toile;;;Jo à sa fenêtre;;24.5;33.0;oui;;J35
+76;Jo Cariage avec vison;J36;1;Jo Cariage avec vison;;huile;papier;;;Jo Cariage avec vison;;35.0;49.0;oui;;J36
+77;la gorguette;J37;1;''la gorguette'';;huile;toile;;;la gorguette;;54.0;42.0;oui;;J37
+78;le Salève vu depuis les environs de Jussy;J38;1;le Salève vu depuis les environs de Jussy;;huile;pavatex;;Jussy;le Salève vu depuis les environs de Jussy;;35.0;27.0;oui;;J38
+79;Les deux frères Claude et Paul;J39;1;''Les deux frères'' Claude et Paul à Bargemont;;huile;bois;;Bargemont;Les deux frères Claude et Paul;1928-07-01;72.0;53.0;oui;selon une photo, le tableau date de juillet 1928;J39
+80;paysage de montagne;J40;1;paysage de montagne bis;;huile;bois;;;paysage de montagne;;35.0;27.0;oui;;J40
+81;chemin dans un sous bois;J41;1;chemin dans un sous bois;;huile;papier;;;chemin dans un sous bois;;22.0;16.0;oui;Éventuellement 28.07.1918;J41
+82;La ferme de Mariton;J42;1;Tence, les foins à la ferme de Mariton;;huile;bois;;Tence;La ferme de Mariton;;98.0;51.0;oui;Tence, les foins à la ferme de Mariton;J42
+83;Vilar Colmar;J43;1;Vilar Colmar (ou Vilaz Colmaz);;huile;toile;;vilar Colmar;Vilar Colmar;;55.0;38.0;oui;"Éventuellement 1923; Vilar Colmar (ou Vilaz Colmaz)";J43
+84;Médaillon Joséphine Cariage I;J44;1;profil de femme (Joséphine Cariage) (avait 37 ans);;plâtre;;;;Médaillon Joséphine Cariage I;;28.0;36.0;bas droite;;J44
+85;Médaillon, Georges Marchand, soldat pendant WW1;J45;1;"profil de Georges Marchand, guerre de 1914-1918 (""poilu"")";;plâtre;;;;Médaillon, Georges Marchand, soldat pendant WW1;;30.5;36.5;bas gauche;Médaillon, Georges Marchand, soldat de 14.18;J45
+86;Buste terre cuite, Claude Cariage enfant;J46;1;buste de Claude Cariage (il avait 6 ans et 7 mois);;terre cuite;;;;Buste terre cuite, Claude Cariage enfant;;31.0;42.0;sur la base;;J46
+87;portrait de Gabrielle jeune;J47;1;portrait de Gabrielle jeune;;pastel;papier;;;portrait de Gabrielle jeune;;32.0;42.0;sans;;J47
+88;Paysage route;J48;1;paysage (à Ténès ?) avec route;;;papier;;Ténès;Paysage route;;31.0;24.5;non;"donné par Marie-Jo à Jean-Marie le 03.08.2020; (ex.M61) paysage à Ténès avec route";J48

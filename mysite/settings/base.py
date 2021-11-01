@@ -108,6 +108,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
  
+
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
 if DEVELOPMENT_MODE is True:
@@ -122,8 +123,8 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
         raise Exception("DATABASE_URL environment variable not defined")
     DATABASES = {
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-    } 
-  
+    }
+ 
 #if os.environ.get('DATABASE_URL'):
 #    DATABASES['default'] =dj_database_url.config(default=os.environ['DATABASE_URL'])
 
@@ -133,7 +134,6 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 #}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
