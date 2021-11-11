@@ -32,22 +32,6 @@ INSTALLED_APPS = [
     'storages'
 ]
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'mysite/templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
 AWS_ACCESS_KEY_ID = '6R2WIBANZN4DYD5P3LTA'
 AWS_SECRET_ACCESS_KEY = 'InP8ybNzDljW59HlsL8KxxQZVyaXrCOuVCJ96Hk/+6o'
 AWS_STORAGE_BUCKET_NAME = 'bucket1'
