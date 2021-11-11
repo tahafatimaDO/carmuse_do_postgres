@@ -23,3 +23,4 @@ dj-database-url
 django-environ
 django-dotenv
 django-storages
+boto3
